@@ -1,3 +1,7 @@
+import com.ict.exoop.Calc
+import com.ict.exoopstudent.School
+import com.ict.exoopstudent.Student
+
 //Hello World!!
 //fun main(){
 //    println("Hello World!")
@@ -107,7 +111,70 @@
 //}
 
 //Array
-fun main(){
-    exArrays()
-    checkArrUseIn()
+//fun main(){
+//    exArrays()
+//    checkArrUseIn()
+//    testFuncInArray()
+//    practiceArray()
+//}
+
+//Collections
+fun main() {
+    exImmutable()
+    exMutable()
+    countWordOccurrences()
 }
+
+//CastTypeOOP
+//fun main(){
+//    castTypeOop()
+//}
+
+//ExOOPCalc
+//fun main(){
+//    val calc = Calc()
+//    calc.a = 10
+//    calc.b = 8
+//
+//    println("MAX: ${calc.max()}")
+//    println("SUM: ${calc.sum()}")
+//    println("IS TRIANGLE: ${calc.isTriangle(12)}")
+//    calc.printCalc()
+//}
+
+//ExOOPStudent
+//fun main(){
+//    val student1 = Student(1,"nguyen van mot",2021)
+//    val student2 = Student(2,"nguyen van hai",2022)
+//    val student3 = Student(3,"nguyen van ba",2023)
+//
+//    val school = School()
+//    school.addStudent(student1)
+//    school.addStudent(student2)
+//    school.addStudent(student3)
+//
+//    println("All Student in School")
+//    school.displayAllStudents()
+//
+//    val searchId = 2
+//    val foundStudent = school.findStudentById(searchId)
+//    if (foundStudent != null) {
+//        println("Student with ID $searchId found:")
+//        foundStudent.printInfo()
+//    } else {
+//        println("Student with ID $searchId not found.")
+//    }
+//
+//    school.removeStudent(student2)
+//    println("After Remove Student")
+//    school.displayAllStudents()
+//
+//    val searchIdRemove = 1
+//    if (foundStudent != null) {
+//        school.removeStudentById(searchIdRemove)
+//        println("After Remove Student")
+//        school.displayAllStudents()
+//    } else {
+//        println("Student with ID $searchId not found.")
+//    }
+//}
