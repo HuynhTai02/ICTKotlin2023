@@ -1,6 +1,5 @@
-import com.ict.exoop.Calc
-import com.ict.exoopstudent.School
-import com.ict.exoopstudent.Student
+import com.ict.employeemanager.Employee
+import com.ict.employeemanager.HRManager
 
 //Hello World!!
 //fun main(){
@@ -119,11 +118,11 @@ import com.ict.exoopstudent.Student
 //}
 
 //Collections
-fun main() {
-    exImmutable()
-    exMutable()
-    countWordOccurrences()
-}
+//fun main() {
+//    exImmutable()
+//    exMutable()
+//    countWordOccurrences()
+//}
 
 //CastTypeOOP
 //fun main(){
@@ -178,3 +177,115 @@ fun main() {
 //        println("Student with ID $searchId not found.")
 //    }
 //}
+
+//EmployeeManager
+fun main() {
+    val hrManager = HRManager()
+
+    while (true) {
+        println("--------- Hệ thống quản lý nhân sự ---------")
+        println("1. Đăng nhập quản lý (Admin)")
+        println("2. Thoát")
+
+        when (readlnOrNull()?.toIntOrNull() ?: 0) {
+            1 -> {
+                if (hrManager.loggedInEmployeeId != null) {
+                    println("Bạn đã đăng nhập rồi.")
+                } else {
+                    hrManager.loginAsAdmin()
+                }
+            }
+
+            2 -> {
+                println("Đã thoát khỏi hệ thống quản lý nhân sự.")
+                break
+            }
+
+            else -> println("Lựa chọn không hợp lệ.")
+        }
+
+        if (hrManager.loggedInEmployeeId != null) {
+            if (hrManager.loggedInEmployeeId == -1) {
+                println("--------- Chào mừng Admin ---------")
+                // Đăng nhập với tư cách Admin
+                while (true) {
+                    println("1. Thêm nhân viên mới")
+                    println("2. Sửa thông tin nhân viên")
+                    println("3. Xoá nhân viên")
+                    println("4. Sắp xếp nhân viên theo lương")
+                    println("5. Sắp xếp nhân viên theo tuổi")
+                    println("6. Sắp xếp nhân viên theo tuổi")
+                    println("7. Tìm kiếm nhân viên theo tên")
+                    println("8. Xem thong tin nhan vien")
+                    println("9. Đăng xuất")
+
+                    when (readlnOrNull()?.toIntOrNull() ?: 0) {
+                        1 -> {
+                            println("Nhập thông tin nhân viên mới:")
+                            println("ID:")
+                            val id = readlnOrNull()?.toIntOrNull() ?: 0
+                            println("Tên:")
+                            val name = readlnOrNull() ?: ""
+                            println("Vị trí:")
+                            val position = readlnOrNull() ?: ""
+                            println("Tuổi:")
+                            val age = readlnOrNull()?.toIntOrNull() ?: 0
+                            println("Lương:")
+                            val salary = readlnOrNull()?.toFloatOrNull() ?: 0f
+
+                            hrManager.addEmployee(Employee(id, name, age, position, salary))
+                        }
+
+                        2 -> {
+                            println("Nhập thông tin nhân viên cần sửa (theo ID):")
+                            println("ID:")
+                            val id = readlnOrNull()?.toIntOrNull() ?: 0
+                            println("Tên:")
+                            val name = readlnOrNull() ?: ""
+                            println("Vị trí:")
+                            val position = readlnOrNull() ?: ""
+                            println("Tuổi:")
+                            val age = readlnOrNull()?.toIntOrNull() ?: 0
+                            println("Lương:")
+                            val salary = readlnOrNull()?.toFloatOrNull() ?: 0f
+
+                            hrManager.updateEmployee(id, name, age, position, salary)
+                        }
+
+                        3 -> {
+                            println("Nhập ID của nhân viên cần xoá:")
+                            val idToDelete = readlnOrNull()?.toIntOrNull() ?: 0
+                            hrManager.deleteEmployee(idToDelete)
+                        }
+
+                        4 -> hrManager.sortEmployeesBySalary()
+                        5 -> hrManager.sortEmployeesByAge()
+                        6 -> {
+                            println("Nhập id nhân viên cần tìm kiếm:")
+                            val searchId = readlnOrNull()?.toIntOrNull() ?: 0
+                            hrManager.viewEmployeeInfo(searchId)
+                        }
+                        7 -> {
+                            println("Nhập tên nhân viên cần tìm kiếm:")
+                            val searchName = readlnOrNull() ?: ""
+                            hrManager.searchEmployeeByName(searchName)
+                        }
+
+                        8 -> {
+                            println("Thong tin tat ca nhan vien:")
+                            hrManager.printEmployee()
+                        }
+
+                        9 -> {
+                            println("Đã thoát khỏi tài khoản Admin.")
+                            hrManager.loggedInEmployeeId = null
+                            break
+                        }
+
+                        else -> println("Lựa chọn không hợp lệ.")
+                    }
+                }
+            }
+        }
+    }
+}
